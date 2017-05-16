@@ -1,0 +1,66 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.map {
+  height: 100%;
+}
+
+.message-error {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  padding: 18px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 6px 9px -1px;
+  font-family: Roboto, Arial, sans-serif;
+  text-align: center;
+}
+
+.menu {
+  margin: 10px;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.btn {
+  float: left;
+  padding: 8px;
+  min-width: 60px;
+  background-color: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 1px 4px -1px;
+  text-align: center;
+  overflow: hidden;
+  user-select: none;
+}
+
+.btn:nth-child(1) {
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+}
+
+.btn:nth-child(3) {
+  border-bottom-right-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
+.btn:hover {
+  background-color: #ebebeb;
+}
+
+.btn--active, .btn:active {
+  font-weight: 700;
+}
+
+.info {
+  margin-left: 10px;
+  padding: 8px;
+  min-width: 100px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 3px 4px -1px;
+}
