@@ -59,6 +59,13 @@ function initMap () {
   googleMap.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(
     info
   );
+ 
+  /* Add info modal */
+  const modal = document.querySelector('#description');
+  const close = document.getElementsByClassName('close')[0];
+  close.addEventListener("click", function () {
+    modal.classList.toggle("modal");
+  });
 
   /* Call for turbines' data */
   $.ajax({
