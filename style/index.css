@@ -22,7 +22,6 @@ html, body {
 }
 
 .modal {
-  display: none;
   position: absolute;
   top: 30%;
   left: 50%;
@@ -35,6 +34,10 @@ html, body {
   box-shadow: rgba(0, 0, 0, 0.3) 0 6px 9px -1px;
   font-family: Roboto, Arial, sans-serif;
   text-align: center;
+}
+
+.modal.modal--hide {
+  display: none;
 }
 
 .close {
