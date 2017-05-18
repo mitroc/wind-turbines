@@ -64,7 +64,7 @@ function initMap () {
   const modal = document.querySelector('#description');
   const close = document.getElementsByClassName('close')[0];
   close.addEventListener("click", function () {
-    modal.classList.toggle("modal");
+    modal.classList.toggle("modal--hide");
   });
 
   /* Call for turbines' data */
