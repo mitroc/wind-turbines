@@ -156,7 +156,7 @@ function displayResults (geojson) {
       turbine.geometry.coordinates[1],
       turbine.geometry.coordinates[0]
     ),
-    weight: turbine.properties.HEIGHT_M
+    // weight: Math.pow(1.05, turbine.properties.HEIGHT_M)
   }));
 
   const heatMap = new google.maps.visualization.HeatmapLayer({
