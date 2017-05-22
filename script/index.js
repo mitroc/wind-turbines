@@ -18,6 +18,7 @@ function initMap () {
     mapTypeId: "terrain",
     scaleControl: true,
     rotateControl: true,
+    gestureHandling: 'greedy',
     mapTypeControlOptions: {
       position: google.maps.ControlPosition.LEFT_TOP
     }
