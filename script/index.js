@@ -200,7 +200,7 @@ function displayResults (geojson) {
         lat: turbine.geometry.coordinates[1],
         lng: turbine.geometry.coordinates[0]
       },
-      icon: "http://labs.google.com/ridefinder/images/mm_20_red.png",
+      icon: "https://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_red.png",
       title: `Tip height: ${turbine.properties.HEIGHT_M} m`
     });
 
