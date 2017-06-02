@@ -24,6 +24,9 @@ function initMap () {
     }
   });
 
+  const drawingManager = new google.maps.drawing.DrawingManager();
+  drawingManager.setMap(googleMap);
+
   /* Add custom menu buttons. */
   const menu = document.createElement("div");
   menu.className = "menu";
@@ -52,6 +55,9 @@ function initMap () {
   googleMap.controls[google.maps.ControlPosition.TOP_LEFT].push(
     menu
   );
+
+  /* Add data filter slider */
+
 
   /* Add custom info field. */
   const info = document.createElement("div");
@@ -157,7 +163,7 @@ function displayResults (geojson) {
       turbine.geometry.coordinates[1],
       turbine.geometry.coordinates[0]
     ),
-    // weight: Math.pow(1.05, turbine.properties.HEIGHT_M)
+    weight: Math.pow(1.05, turbine.properties.HEIGHT_M)
   }));
 
   const heatMap = new google.maps.visualization.HeatmapLayer({
