@@ -24,8 +24,32 @@ function initMap () {
     }
   });
 
-  const drawingManager = new google.maps.drawing.DrawingManager();
+  /* Add drawing manager to map. */
+  const drawingManager = new google.maps.drawing.DrawingManager({
+    drawingControlOptions: {
+      position: google.maps.ControlPosition.TOP_CENTER,
+      drawingModes: ['circle', 'polyline']
+    },
+    circleOptions: {
+      strokeWeight: 1,
+      clickable: true,
+      editable: true,
+    },
+    polylineOptions: {
+
+    }
+  });
   drawingManager.setMap(googleMap);
+
+  /* Circle radius retrieve. */
+  google.maps.event.addListener(drawingManager, 'circlecomplete', function(circle) {
+    let radius = circle.getRadius();
+    console.log(radius);
+
+    google.maps.event.addListener(circle, 'radius_changed', function() {
+      console.log(this.getRadius());
+    });
+  });
 
   /* Add custom menu buttons. */
   const menu = document.createElement("div");
