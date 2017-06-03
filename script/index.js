@@ -28,7 +28,7 @@ function initMap () {
   const drawingManager = new google.maps.drawing.DrawingManager({
     drawingControlOptions: {
       position: google.maps.ControlPosition.TOP_CENTER,
-      drawingModes: ['circle', 'polyline']
+      drawingModes: ['circle']
     },
     circleOptions: {
       strokeWeight: 1,
@@ -96,13 +96,6 @@ function initMap () {
   drawMeasureBtn.title = "Zmierz odległość";
   measure.appendChild(drawMeasureBtn);
 
-  const clearMeasureBtn = document.createElement("div");
-  clearMeasureBtn.className = "btn btn-clear";
-  clearMeasureBtn.id = "measure-clear";
-  clearMeasureBtn.innerHTML = "<img src='image/clear.png'>";
-  clearMeasureBtn.title = "Wyczyść pomiar";
-  measure.appendChild(clearMeasureBtn);
-
   googleMap.controls[google.maps.ControlPosition.LEFT_TOP].push(
     measure
   );
@@ -115,6 +108,7 @@ function initMap () {
     } else {
       measureTool.start();
       drawMeasureBtn.innerHTML = "<img src='image/clear.png'>";
+      clearMeasureBtn.title = "Wyczyść pomiar";
       this.classList.toggle("measure-clear");
     }
   });

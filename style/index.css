@@ -97,7 +97,7 @@ html, body {
 
 .measure {
   top: 49px !important; /* overwrite Google Maps style */
-  left: 100px !important;
+  left: 120px !important;
   margin: 0 10px 0 10px;
   cursor: pointer;
 }
