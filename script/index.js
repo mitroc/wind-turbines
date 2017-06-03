@@ -24,33 +24,6 @@ function initMap () {
     }
   });
 
-  /* Add drawing manager to map. */
-  const drawingManager = new google.maps.drawing.DrawingManager({
-    drawingControlOptions: {
-      position: google.maps.ControlPosition.TOP_CENTER,
-      drawingModes: ['circle']
-    },
-    circleOptions: {
-      strokeWeight: 1,
-      clickable: false,
-      editable: true,
-    },
-    polylineOptions: {
-
-    }
-  });
-  drawingManager.setMap(googleMap);
-
-  /* Get circle radius. */
-  google.maps.event.addListener(drawingManager, 'circlecomplete', function(circle) {
-    let radius = circle.getRadius();
-    console.log(radius);
-
-    google.maps.event.addListener(circle, 'radius_changed', function() {
-      console.log(this.getRadius());
-    });
-  });
-
   /* Measure tool */
   const measureTool = new MeasureTool(googleMap ,{
     contextMenu: false
