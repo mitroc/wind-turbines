@@ -96,16 +96,21 @@ html, body {
 }
 
 .measure {
-  top: 49px !important;
+  top: 49px !important; /* overwrite Google Maps style */
   left: 100px !important;
   margin: 0 10px 0 10px;
   cursor: pointer;
 }
 
-.btn.btn-measure {
+.btn.btn-measure,
+.btn.btn-clear{
   min-width: initial;
   padding: 2.4px 8px 0 8px;
   border-radius: 2px;
+}
+
+.btn.btn-clear {
+  display: none;
 }
 
 .info {

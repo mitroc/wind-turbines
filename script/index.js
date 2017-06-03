@@ -52,7 +52,9 @@ function initMap () {
   });
 
   /* Measure tool */
-  const measureTool = new MeasureTool(googleMap);
+  const measureTool = new MeasureTool(googleMap ,{
+    contextMenu: false
+  });
 
   /* Add custom menu buttons. View type. */
   const menu = document.createElement("div");
@@ -90,16 +92,32 @@ function initMap () {
   const drawMeasureBtn = document.createElement("div");
   drawMeasureBtn.className = "btn btn-measure";
   drawMeasureBtn.id = "measure-draw";
-  drawMeasureBtn.innerHTML = "<img src='image/ic_straighten_black_24dp_1x.png'>";
+  drawMeasureBtn.innerHTML = "<img src='image/measure.png'>";
   drawMeasureBtn.title = "Zmierz odległość";
   measure.appendChild(drawMeasureBtn);
+
+  const clearMeasureBtn = document.createElement("div");
+  clearMeasureBtn.className = "btn btn-clear";
+  clearMeasureBtn.id = "measure-clear";
+  clearMeasureBtn.innerHTML = "<img src='image/clear.png'>";
+  clearMeasureBtn.title = "Wyczyść pomiar";
+  measure.appendChild(clearMeasureBtn);
 
   googleMap.controls[google.maps.ControlPosition.LEFT_TOP].push(
     measure
   );
 
-  /* Add data filter slider */
-
+  drawMeasureBtn.addEventListener("click", function () {
+    if (this.classList.contains("measure-clear")) {
+      measureTool.end();
+      drawMeasureBtn.innerHTML = "<img src='image/measure.png'>";
+      this.classList.toggle("measure-clear");
+    } else {
+      measureTool.start();
+      drawMeasureBtn.innerHTML = "<img src='image/clear.png'>";
+      this.classList.toggle("measure-clear");
+    }
+  });
 
   /* Add custom info field. */
   const info = document.createElement("div");
