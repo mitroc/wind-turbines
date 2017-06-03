@@ -41,7 +41,7 @@ function initMap () {
   });
   drawingManager.setMap(googleMap);
 
-  /* Circle radius retrieve. */
+  /* Get circle radius. */
   google.maps.event.addListener(drawingManager, 'circlecomplete', function(circle) {
     let radius = circle.getRadius();
     console.log(radius);
@@ -51,7 +51,10 @@ function initMap () {
     });
   });
 
-  /* Add custom menu buttons. */
+  /* Measure tool */
+  const measureTool = new MeasureTool(googleMap);
+
+  /* Add custom menu buttons. View type. */
   const menu = document.createElement("div");
   menu.className = "menu";
 
@@ -78,6 +81,21 @@ function initMap () {
 
   googleMap.controls[google.maps.ControlPosition.TOP_LEFT].push(
     menu
+  );
+
+  /* Add custom menu buttons. Measure tool. */
+  const measure = document.createElement("div");
+  measure.className = "measure";
+
+  const drawMeasureBtn = document.createElement("div");
+  drawMeasureBtn.className = "btn btn-measure";
+  drawMeasureBtn.id = "measure-draw";
+  drawMeasureBtn.innerHTML = "<img src='image/ic_straighten_black_24dp_1x.png'>";
+  drawMeasureBtn.title = "Zmierz odległość";
+  measure.appendChild(drawMeasureBtn);
+
+  googleMap.controls[google.maps.ControlPosition.LEFT_TOP].push(
+    measure
   );
 
   /* Add data filter slider */
