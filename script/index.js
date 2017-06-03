@@ -32,7 +32,7 @@ function initMap () {
     },
     circleOptions: {
       strokeWeight: 1,
-      clickable: true,
+      clickable: false,
       editable: true,
     },
     polylineOptions: {
@@ -104,11 +104,12 @@ function initMap () {
     if (this.classList.contains("measure-clear")) {
       measureTool.end();
       drawMeasureBtn.innerHTML = "<img src='image/measure.png'>";
+      drawMeasureBtn.title = "Zmierz odległość";
       this.classList.toggle("measure-clear");
     } else {
       measureTool.start();
       drawMeasureBtn.innerHTML = "<img src='image/clear.png'>";
-      clearMeasureBtn.title = "Wyczyść pomiar";
+      drawMeasureBtn.title = "Wyczyść pomiar";
       this.classList.toggle("measure-clear");
     }
   });
