@@ -318,8 +318,8 @@ function displayResults (geojson) {
     const avgHeight = Math.round(
       tipHeights.reduce(
         (prev, next) => prev + next
-      ) / numberOfTurbines
-    );
+      ) / numberOfTurbines * 10
+    ) / 10;
 
     info.innerHTML = `<table>
                 <tr><td><strong>Parametry klastra:</strong></td></tr>
