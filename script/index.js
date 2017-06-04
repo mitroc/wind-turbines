@@ -25,7 +25,7 @@ function initMap () {
   });
 
   /* Measure tool */
-  const measureTool = new MeasureTool(googleMap ,{
+  const measureTool = new MeasureTool(googleMap, {
     contextMenu: false
   });
 
@@ -94,7 +94,8 @@ function initMap () {
   googleMap.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(
     info
   );
- 
+
+
   /* Add info modal */
   const modal = document.querySelector('#description');
   const close = document.getElementsByClassName('close')[0];
@@ -171,6 +172,7 @@ function calculations (geojson) {
   );
 
   infoWindow.innerHTML = `<table>
+                <tr><td><strong>Parametry całkowite:</strong></td></tr>
                 <tr><td>Liczba turbin: </td><td><strong> ${numberOfTurbines}</strong></td></tr>
                 <tr><td>Wysokość max: </td><td><strong> ${maxHeight} m</strong></td></tr>
                 <tr><td>Wysokość min:</td><td><strong> ${minHeight} m</strong></td></tr>
@@ -191,7 +193,7 @@ function displayResults (geojson) {
       turbine.geometry.coordinates[1],
       turbine.geometry.coordinates[0]
     ),
-    weight: Math.pow(1.05, turbine.properties.HEIGHT_M)
+    weight: Math.pow(1.0, turbine.properties.HEIGHT_M)
   }));
 
   const heatMap = new google.maps.visualization.HeatmapLayer({
@@ -285,7 +287,8 @@ function displayResults (geojson) {
         position: {
           lat: turbine.geometry.coordinates[1],
           lng: turbine.geometry.coordinates[0]
-        }
+        },
+        label: `${turbine.properties.HEIGHT_M}`
       })
   );
 
@@ -293,7 +296,38 @@ function displayResults (geojson) {
     imagePath: "https://cdn.rawgit.com/googlemaps/js-marker-clusterer/gh-pages/images/m",
     gridSize: 100,
     averageCenter: true,
-    minimumClusterSize: 1
+    minimumClusterSize: 1,
+    zoomOnClick: true,
+  });
+
+  /* Add custom info field for cluster. */
+  const info = document.createElement('div');
+  info.className = "info element-hidden";
+
+  googleMap.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(
+    info
+  );
+
+  markerClusterer.addListener('mouseover', function (cluster) {
+    const tipHeights = cluster.getMarkers().map(
+      marker => parseFloat(marker.label)
+    );
+    const numberOfTurbines = cluster.getSize();
+    const maxHeight = Math.max(...tipHeights);
+    const minHeight = Math.min(...tipHeights);
+    const avgHeight = Math.round(
+      tipHeights.reduce(
+        (prev, next) => prev + next
+      ) / numberOfTurbines
+    );
+
+    info.innerHTML = `<table>
+                <tr><td><strong>Parametry klastra:</strong></td></tr>
+                <tr><td>Liczba turbin: </td><td><strong> ${numberOfTurbines}</strong></td></tr>
+                <tr><td>Wysokość max: </td><td><strong> ${maxHeight} m</strong></td></tr>
+                <tr><td>Wysokość min:</td><td><strong> ${minHeight} m</strong></td></tr>
+                <tr><td>Wysokość średnia: </td><td><strong>${avgHeight} m</strong></td></tr>
+              </table>`;
   });
 
   const clusterBtn = document.querySelector("#toggle-clusters");
@@ -303,5 +337,14 @@ function displayResults (geojson) {
       markersForClusters[i].setMap(null);
     }
     this.classList.toggle("btn--active");
+
+    info.classList.toggle('element-hidden');
+    info.innerHTML = `<table>
+                <tr><td><strong>Parametry klastra:</strong></td></tr>
+                <tr><td>Liczba turbin: </td><td><strong> </strong></td></tr>
+                <tr><td>Wysokość max: </td><td><strong>  m</strong></td></tr>
+                <tr><td>Wysokość min:</td><td><strong> m</strong></td></tr>
+                <tr><td>Wysokość średnia: </td><td><strong> m</strong></td></tr>
+              </table>`;
   });
 }
