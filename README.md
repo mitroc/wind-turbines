@@ -8,8 +8,7 @@
 ### How do I get set up? ###
 * No setup necessary. Just clone and open.
 * Or check the working version 
-    * here: https://mitroc.github.io/wind-turbines/ or 
-    * here: http://codepen.io/mitroc/full/mmjBYv/
+    * here: https://mitroc.github.io/wind-turbines/
 
 ### Contribution guidelines ###
 * The code itself is in learn/develop phase but a kind of MVP feature is ensured. As the author is new to programming, any comments, guides and review is appreciated. Face to face code review (3city, Poland) - the beer is on me :-).  
