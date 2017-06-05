@@ -4,6 +4,7 @@
   <title>Turbiny Wiatrowe</title>
   <script src="script/MeasureTool.min.js"></script>
   <link rel="stylesheet" href="style/index.css">
+  <link rel="stylesheet" href="style/jquery-ui.min.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta property="og:title" content="Elektrownie wiatrowe"/>
@@ -27,8 +28,14 @@
     <li>Turbiny - pojedyncze obiekty, dane rozszerzone po kliknięciu na obiekt</li>
   </ul>
 </div>
+<div class="slider-wrapper">
+  <span class="slider-value slider-max"></span>
+  <div id="slider"></div>
+  <span class="slider-value slider-min"></span>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="script/jquery-ui.min.js"></script>
 <script src="script/index.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?v=3.28&key=AIzaSyB3zcfDJ1h1QZphniWZJ3EOQRVUZlf_594&libraries=visualization,geometry&callback=initMap"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/markerclustererplus/2.1.4/markerclusterer.min.js"></script>

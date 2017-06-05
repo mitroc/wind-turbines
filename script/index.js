@@ -24,11 +24,6 @@ function initMap () {
     }
   });
 
-  /* Measure tool */
-  const measureTool = new MeasureTool(googleMap, {
-    contextMenu: false
-  });
-
   /* Add custom menu buttons. View type. */
   const menu = document.createElement("div");
   menu.className = "menu";
@@ -59,6 +54,10 @@ function initMap () {
   );
 
   /* Add custom menu buttons. Measure tool. */
+  const measureTool = new MeasureTool(googleMap, {
+    contextMenu: false
+  });
+
   const measure = document.createElement("div");
   measure.className = "measure";
 
@@ -95,13 +94,46 @@ function initMap () {
     info
   );
 
-
   /* Add info modal */
   const modal = document.querySelector('#description');
   const close = document.getElementsByClassName('close')[0];
   close.addEventListener("click", function () {
     modal.classList.toggle("modal--hide");
   });
+
+  /* Add custom menu buttons. Slider. */
+  const slider = document.querySelector(".slider-wrapper");
+  googleMap.controls[google.maps.ControlPosition.LEFT_TOP].push(
+    slider
+  );
+
+  $("#slider").slider({
+    orientation: 'vertical',
+    range: true,
+    values: [90, 180],
+    min: 90,
+    max: 250,
+    step: 1,
+    create: function () {
+      $('.slider-min').text(90);
+      $('.slider-max').text(180);
+    },
+    stop: function (event, ui) {
+      console.log('stop', ui.value) // przeładować mapę markerów
+    },
+    slide: function (event, ui) {
+      if (ui.handleIndex === 0) {
+        $('.slider-min').text(ui.value);
+      } else {
+        $('.slider-max').text(ui.value);
+      }
+
+    }
+  });
+
+  let sliderInitialMax = $("#slider").slider("values");
+  console.log(sliderInitialMax);
+
 
   /* Call for turbines' data */
   $.ajax({
@@ -229,8 +261,13 @@ function displayResults (geojson) {
    */
   let currentMap = null;
   let prevInfoWindow = false;
+  let heightFilter = 160;
 
-  const markers = geojson.features.map(turbine => {
+  const filteredTurbines = geojson.features.filter(turbine =>
+    turbine.properties.HEIGHT_M >= heightFilter
+  );
+
+  const markers = filteredTurbines.map(turbine => {
     const marker = new google.maps.Marker({
       position: {
         lat: turbine.geometry.coordinates[1],
@@ -316,10 +353,10 @@ function displayResults (geojson) {
     const maxHeight = Math.max(...tipHeights);
     const minHeight = Math.min(...tipHeights);
     const avgHeight = Math.round(
-      tipHeights.reduce(
-        (prev, next) => prev + next
-      ) / numberOfTurbines * 10
-    ) / 10;
+        tipHeights.reduce(
+          (prev, next) => prev + next
+        ) / numberOfTurbines * 10
+      ) / 10;
 
     info.innerHTML = `<table>
                 <tr><td><strong>Parametry klastra:</strong></td></tr>

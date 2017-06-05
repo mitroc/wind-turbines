@@ -113,6 +113,14 @@ html, body {
   display: none;
 }
 
+.slider-wrapper {
+  margin: 0 20px 0 20px;
+}
+
+.slider-value {
+  background: #ffffff;
+}
+
 .info {
   margin: 10px;
   padding: 8px;
@@ -125,8 +133,6 @@ html, body {
 .element-hidden {
   display: none;
 }
-
-
 
 /* Google Maps overwrite */
 .gm-style-mtc div {
@@ -143,4 +149,5 @@ html, body {
   padding: 8px;
   font-size: 11px;
 }
+
 
