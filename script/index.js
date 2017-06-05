@@ -294,7 +294,7 @@ function displayResults (geojson) {
     step: 1,
     create: function () {
       $('.slider-min').text(90);
-      $('.slider-max').text(180);
+      $('.slider-max').text(215);
     },
     stop: function (event, ui) {
       for (let i = 0; i < markers.length; i += 1) {
