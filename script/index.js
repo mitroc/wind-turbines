@@ -107,34 +107,6 @@ function initMap () {
     slider
   );
 
-  $("#slider").slider({
-    orientation: 'vertical',
-    range: true,
-    values: [90, 180],
-    min: 90,
-    max: 250,
-    step: 1,
-    create: function () {
-      $('.slider-min').text(90);
-      $('.slider-max').text(180);
-    },
-    stop: function (event, ui) {
-      console.log('stop', ui.value) // przeładować mapę markerów
-    },
-    slide: function (event, ui) {
-      if (ui.handleIndex === 0) {
-        $('.slider-min').text(ui.value);
-      } else {
-        $('.slider-max').text(ui.value);
-      }
-
-    }
-  });
-
-  let sliderInitialMax = $("#slider").slider("values");
-  console.log(sliderInitialMax);
-
-
   /* Call for turbines' data */
   $.ajax({
     url: "https://services.arcgis.com/cqaIQEE6sk78TLdG/arcgis/rest/" +
@@ -261,13 +233,8 @@ function displayResults (geojson) {
    */
   let currentMap = null;
   let prevInfoWindow = false;
-  let heightFilter = 160;
 
-  const filteredTurbines = geojson.features.filter(turbine =>
-    turbine.properties.HEIGHT_M >= heightFilter
-  );
-
-  const markers = filteredTurbines.map(turbine => {
+  const markers = geojson.features.map(turbine => {
     const marker = new google.maps.Marker({
       position: {
         lat: turbine.geometry.coordinates[1],
@@ -299,6 +266,7 @@ function displayResults (geojson) {
 
     return marker;
   });
+  console.log(markers[0]);
 
   function setMapForMarkers (map) {
     for (let i = 0; i < markers.length; i += 1) {
@@ -313,6 +281,39 @@ function displayResults (geojson) {
       ? setMapForMarkers(googleMap)
       : setMapForMarkers(null);
     this.classList.toggle("btn--active");
+  });
+
+  $("#slider").slider({
+    orientation: 'vertical',
+    range: true,
+    values: [90, 180],
+    min: 90,
+    max: 250,
+    step: 1,
+    create: function () {
+      $('.slider-min').text(90);
+      $('.slider-max').text(180);
+    },
+    stop: function (event, ui) {
+      for (let i = 0; i < markers.length; i += 1) {
+        let markerHeight = parseFloat(markers[i].title.split(' ')[2]);
+        let min = parseFloat($('.slider-min').text());
+        let max = parseFloat($('.slider-max').text());
+
+        if (markerHeight < min || markerHeight > max) {
+          markers[i].setMap(null);
+        } else {
+          markers[i].setMap(googleMap);
+        }
+      }
+    },
+    slide: function (event, ui) {
+      if (ui.handleIndex === 0) {
+        $('.slider-min').text(ui.value);
+      } else {
+        $('.slider-max').text(ui.value);
+      }
+    }
   });
 
   /*
