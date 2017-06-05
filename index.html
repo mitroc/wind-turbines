@@ -19,19 +19,22 @@
 <div id="description" class="modal">
   <span class="close">&times;</span>
   <br>
-  <p>Mapa przedstawia zainstalowane na terenie Polski turbiny wiatrowe, stanowiące przeszkody lotnicze, czyli zasadniczo (w bazie danych są wyjątki) turbiny o wysokości 100 i więcej metrów nad poziom terenu.</p>
+  <p>Mapa przedstawia zainstalowane na terenie Polski turbiny wiatrowe, stanowiące przeszkody lotnicze, czyli zasadniczo (są wyjątki) turbiny o wysokości 100 i więcej metrów nad poziom terenu.</p>
   <p>Baza turbin została pobrana z zasobów Urzędu Lotnictwa Cywilnego.</p>
-  <p>Widoki:</p>
+  <p>Tryby:</p>
   <ul>
     <li>Mapa ciepła - intensywność zabudowy</li>
     <li>Klastry - zgrupowanie obszarowe</li>
-    <li>Turbiny - pojedyncze obiekty, dane rozszerzone po kliknięciu na obiekt</li>
+    <li>Turbiny - pojedyncze obiekty (szczegóły po kliknięciu)</li>
+    <li>Miarka - pomiar odległości</li>
+    <li>Suwak (tylko dla trybu Turbiny) - filtrowanie po wysokości obiektu</li>
   </ul>
+
 </div>
-<div class="slider-wrapper">
-  <span class="slider-value slider-max"></span>
+<div class="slider-wrapper element-hidden">
+  <p class="slider-value slider-max"></p>
   <div id="slider"></div>
-  <span class="slider-value slider-min"></span>
+  <p class="slider-value slider-min"></p>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

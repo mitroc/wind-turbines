@@ -266,7 +266,6 @@ function displayResults (geojson) {
 
     return marker;
   });
-  console.log(markers[0]);
 
   function setMapForMarkers (map) {
     for (let i = 0; i < markers.length; i += 1) {
@@ -281,14 +280,17 @@ function displayResults (geojson) {
       ? setMapForMarkers(googleMap)
       : setMapForMarkers(null);
     this.classList.toggle("btn--active");
+    document.querySelector('.slider-wrapper')
+      .classList.toggle('element-hidden');
+    $('#slider').slider('option', 'values', [90, 215])
   });
 
   $("#slider").slider({
     orientation: 'vertical',
     range: true,
-    values: [90, 180],
+    values: [90, 215],
     min: 90,
-    max: 250,
+    max: 215,
     step: 1,
     create: function () {
       $('.slider-min').text(90);
@@ -299,11 +301,13 @@ function displayResults (geojson) {
         let markerHeight = parseFloat(markers[i].title.split(' ')[2]);
         let min = parseFloat($('.slider-min').text());
         let max = parseFloat($('.slider-max').text());
+        let markerMap = markers[i].getMap();
 
         if (markerHeight < min || markerHeight > max) {
           markers[i].setMap(null);
         } else {
-          markers[i].setMap(googleMap);
+          if (markerMap === null)
+            markers[i].setMap(googleMap);
         }
       }
     },

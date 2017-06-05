@@ -25,7 +25,7 @@ html, body {
   position: absolute;
   top: 20%;
   margin: 10px;
-  padding: 18px;
+  padding: 0 10px 10px 10px;
   border-radius: 5px;
   background-color: #ffffff;
   box-shadow: rgba(0, 0, 0, 0.3) 0 6px 9px -1px;
@@ -48,10 +48,11 @@ html, body {
 }
 
 .close {
+  float: right;
+  margin: -3px -3px 0 0;
   color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .close:focus,
@@ -103,22 +104,26 @@ html, body {
 }
 
 .btn.btn-measure,
-.btn.btn-clear{
+.btn.btn-clear {
   min-width: initial;
   padding: 2.4px 8px 0 8px;
   border-radius: 2px;
 }
 
-.btn.btn-clear {
-  display: none;
-}
+/*.btn.btn-clear {*/
+/*display: none;*/
+/*}*/
 
 .slider-wrapper {
   margin: 0 20px 0 20px;
 }
 
 .slider-value {
+  padding: 3px;
+  border-radius: 2px;
   background: #ffffff;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 1px 4px -1px;
 }
 
 .info {
@@ -150,4 +155,14 @@ html, body {
   font-size: 11px;
 }
 
+/* Slider overwrite */
+
+.ui-widget.ui-widget-content {
+  margin: 0 auto;
+}
+
+.ui-widget.ui-widget-content,
+.ui-slider-handle {
+  box-shadow: rgba(0, 0, 0, 0.3) 0 1px 4px -1px;
+}
 
