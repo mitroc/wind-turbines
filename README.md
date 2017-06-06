@@ -1,7 +1,7 @@
 ## Large Wind Turbines - Poland
 
 ### Note
-* I ged voices that the code is qute messy. Indeed it is, I agree. I'm learning doing that, so I rather wanted the app to work (kind of MVP) than to have a pure and clean code. But I promise I'll refactor it soon. :-)
+* I get voices that the code is qute messy. Indeed it is, I agree. I'm learning while making that site, so I rather wanted the app to work (kind of MVP) than to have a pure and clean code. But I promise I'll refactor it soon. :-)
 
 ### What is this repository for? ###
 * This project presents **large wind turbines** (tip height 100 m and more, with some exceptions as seen in the database) installed in Poland and reported by investors to the Civil Aviation Authority (CAA) as aeronautical obstacles.
