@@ -133,7 +133,7 @@ function initMap () {
       where: "OBST_TYPE LIKE '%wind%'"
     }
   })
-    .done(displayResults)
+    .done((gj) =>  displayResults(gj, heatMapBtn, clusterBtn, turbinesBtn ))
     .done(calculations)
     .fail(errorMessage);
 }
@@ -188,7 +188,7 @@ function calculations (geojson) {
  Heatmap, markers and clusters display handle.
  Menu buttons handle.
  */
-function displayResults (geojson) {
+function displayResults (geojson, heatMapBtn, clusterBtn, turbinesBtn) {
   /*
    HEATMAP---------------------------------------------------------
    */
@@ -222,7 +222,7 @@ function displayResults (geojson) {
     ]
   });
 
-  const heatMapBtn = document.querySelector("#toggle-heatmap");
+  console.log(heatMapBtn)
   heatMapBtn.addEventListener("click", function () {
     heatMap.setMap(heatMap.getMap() ? null : googleMap);
     this.classList.toggle("btn--active");
@@ -240,8 +240,7 @@ function displayResults (geojson) {
         lat: turbine.geometry.coordinates[1],
         lng: turbine.geometry.coordinates[0]
       },
-      // icon: "https://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_red.png",
-      icon: "https://raw.githubusercontent.com/mitroc/wind-turbines/master/image/wind-turbine.png",
+      icon: "https://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_red.png",
       title: `Tip height: ${turbine.properties.HEIGHT_M} m`
     });
 
@@ -274,7 +273,6 @@ function displayResults (geojson) {
     currentMap = map;
   }
 
-  const turbinesBtn = document.querySelector("#toggle-turbines");
   turbinesBtn.addEventListener("click", function () {
     currentMap === null
       ? setMapForMarkers(googleMap)
@@ -372,7 +370,6 @@ function displayResults (geojson) {
               </table>`;
   });
 
-  const clusterBtn = document.querySelector("#toggle-clusters");
   clusterBtn.addEventListener("click", function () {
     markerClusterer.setMap(markerClusterer.getMap() ? null : googleMap);
     for (let i = 0; i < markersForClusters.length; i += 1) {
