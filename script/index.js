@@ -134,7 +134,7 @@ function initMap () {
     }
   })
     .done((gj) =>  displayResults(gj, heatMapBtn, clusterBtn, turbinesBtn ))
-    .done(calculations)
+    .done((gj) => calculations(gj, info))
     .fail(errorMessage);
 }
 
@@ -161,8 +161,7 @@ function errorMessage (xhr, status) {
 /*
  Calculations on the data.
  */
-function calculations (geojson) {
-  const infoWindow = document.querySelector(".info");
+function calculations (geojson, infoWindow) {
   const numberOfTurbines = geojson.features.length;
   const heights = geojson.features.map(
     turbine => turbine.properties.HEIGHT_M
