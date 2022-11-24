@@ -222,7 +222,6 @@ function displayResults (geojson, heatMapBtn, clusterBtn, turbinesBtn) {
     ]
   });
 
-  console.log(heatMapBtn)
   heatMapBtn.addEventListener("click", function () {
     heatMap.setMap(heatMap.getMap() ? null : googleMap);
     this.classList.toggle("btn--active");
